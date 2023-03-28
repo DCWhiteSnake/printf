@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
-printstr - prints string to the console
-@c - a pointer to the first char
-Return - the number of characters that were printed.
+ * printstr - prints string to the console
+ * @c: a pointer to the first char
+ * Return: the number of characters that were printed.
 */
-int printstr (char *c)
+int printstr(char *c)
 {
 	int count = 0;
 

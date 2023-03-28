@@ -2,8 +2,9 @@
 
 int handle_backslash(const char *format, int start, char c);
 int handle_percent(const char *format, va_list ap, int start, char c);
+
 /**
- * _prinf() - prints formatted output to stdout
+ * _printf - prints formatted output to stdout
  * @format: format string containing conversion specifiers
  *
  * Return: number of characters printed
@@ -41,8 +42,15 @@ int _printf(const char *format, ...)
 	return (count - a_count);
 }
 
+/**
+ * handle_backslash - self descriptive
+ * @format: the string
+ * @start: where to start working from
+ * @c: the reference to the \ char.
+ * Return: 1 always.
+ */
 int handle_backslash(const char *format, int start, char c)
-{	
+{
 	int start_c;
 
 	start_c = start;
@@ -56,6 +64,14 @@ int handle_backslash(const char *format, int start, char c)
 	return (1);
 }
 
+/**
+ * handle_percent - self descriptive
+ * @format: the string
+ * @start: where to start working from
+ * @ap: a refence to the va_list instance.
+ * @c: the reference to the '%' char.
+ * Return: 1 always.
+ */
 int handle_percent(const char *format, va_list ap, int start, char c)
 {
 	int count;
@@ -95,5 +111,5 @@ int handle_percent(const char *format, va_list ap, int start, char c)
 		_putchar(c);
 		c = *(format + ++count);
 	}
-	return(1);
+	return (1);
 }

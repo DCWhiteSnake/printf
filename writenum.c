@@ -7,9 +7,9 @@
 */
 void writenum(int n)
 {
-        if (n > 9)
-        {
-                writenum(n / 10);
-        }
-        _putchar('0' + n % 10);
+	if (n > 9)
+	{
+		writenum(n / 10);
+	}
+	_putchar('0' + n % 10);
 }
