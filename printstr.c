@@ -3,13 +3,16 @@
 /**
 printstr - prints string to the console
 @c - a pointer to the first char
-Return - nothing.
+Return - the number of characters that were printed.
 */
-void printstr (char *c)
+int printstr (char *c)
 {
-	if (*c != '\0')
+	int count = 0;
+
+	while (*c != '\0')
 	{
-		while (*c != '\0')
-			_putchar(*(c++));
+		_putchar(*(c++));
+		count++;
 	}
+	return (count);
 }

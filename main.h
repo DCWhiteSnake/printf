@@ -4,6 +4,6 @@
 int _putchar(char c);
 int _printf(const char *format, ...);
 void write_number(int n);
-void printstr(char *c);
+int printstr(char *c);
 void writenum(int n);
 #endif
