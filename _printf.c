@@ -19,6 +19,15 @@ int _printf(const char *format, ...)
 	c = *format;
 	a_count = 0;
 	count = 0;
+
+	if (!format)
+	{
+		return (-1);
+	}
+	if (!format[0])
+	{
+		return (0);
+	}
 	while (c != '\0')
 	{
 		if (c != '%' && c != '\\')
