@@ -1,7 +1,7 @@
 #include "main.h"
 
-int handle_backslash(const char *format, int start, char c);
-int handle_percent(const char *format, va_list ap, int start, char c);
+int handle_backslash(const char *format, unsigned int start, char c);
+int handle_percent(const char *format, va_list ap, unsigned int start, char c);
 
 /**
  * _printf - prints formatted output to stdout
@@ -11,7 +11,7 @@ int handle_percent(const char *format, va_list ap, int start, char c);
  */
 int _printf(const char *format, ...)
 {
-	int count, a_count;
+	unsigned int count, a_count;
 	va_list ap;
 	char c;
 
@@ -57,9 +57,9 @@ int _printf(const char *format, ...)
  * @c: the reference to the \ char.
  * Return: 1 always.
  */
-int handle_backslash(const char *format, int start, char c)
+int handle_backslash(const char *format, unsigned int start, char c)
 {
-	int start_c;
+	unsigned int start_c;
 
 	start_c = start;
 	c = *(format + ++start_c);
@@ -80,9 +80,9 @@ int handle_backslash(const char *format, int start, char c)
  * @c: the reference to the '%' char.
  * Return: 1 always.
  */
-int handle_percent(const char *format, va_list ap, int start, char c)
+int handle_percent(const char *format, va_list ap, unsigned int start, char c)
 {
-	int count;
+	unsigned int count;
 	int number;
 
 	count = start;
