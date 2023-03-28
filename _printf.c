@@ -1,19 +1,17 @@
 #include "main.h"
 /**
- * Function prinf() - prints formatted output to stdout
+ * _prinf() - prints formatted output to stdout
  * @format: format string containing conversion specifiers
  *
  * Return: number of characters printed
  */
 int _printf(const char *format, ...)
 {
-	int count;
-	int a_count;
+	int count, a_count, number;
 	va_list ap;
 	char c;
-    int number;
-	va_start(ap, format);
 
+	va_start(ap, format);
 	c = *format;
 	a_count = 0;
 	count = 0;
@@ -33,7 +31,7 @@ int _printf(const char *format, ...)
 			switch (c)
 			{
 			case 'c':
-				_putchar(va_arg(ap,int));
+				_putchar(va_arg(ap, int));
 				c = *(format + ++count);
 				continue;
 			case 's':
@@ -76,5 +74,5 @@ int _printf(const char *format, ...)
 		}
 	}
 	va_end(ap);
-	return count - a_count;
+	return (count - a_count);
 }
