@@ -19,7 +19,6 @@ int _printf(const char *format, ...)
 	c = *format;
 	a_count = 0;
 	count = 0;
-	_putchar('\n');
 	while (c != '\0')
 	{
 		if (c != '%' && c != '\\')
