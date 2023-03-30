@@ -1,7 +1,7 @@
 #include "main.h"
 
 int handle_backslash(const char *format, unsigned int start, char c);
-int handle_percent(const char *format, va_list ap, unsigned int start, char c);
+int handle_percent(va_list ap, char c);
 
 /**
  * _printf - prints formatted output to stdout
@@ -11,7 +11,7 @@ int handle_percent(const char *format, va_list ap, unsigned int start, char c);
  */
 int _printf(const char *format, ...)
 {
-	unsigned int count, a_count;
+	unsigned int count, a_count, count_2;
 	va_list ap;
 	char c;
 
@@ -19,6 +19,7 @@ int _printf(const char *format, ...)
 	c = *format;
 	a_count = 0;
 	count = 0;
+	count_2 = 0;
 
 	if (!format)
 	{
@@ -28,18 +29,17 @@ int _printf(const char *format, ...)
 	{
 		return (0);
 	}
-	while (c != '\0')
+	while (c)
 	{
 		if (c != '%' && c != '\\')
 		{
 			_putchar(c);
-			c = *(format + ++count);
+			c = *(format + ++count + a_count);
 		}
 		else if (c == '%')
 		{
-			a_count++;
-			count += handle_percent(format, ap, count, c);
-			c = *(format + ++count);
+			count_2 += handle_percent(ap, *(format + count + a_count + 1));
+			c = *(format + ++count + ++a_count);
 		}
 		else if (c == '\\')
 		{
@@ -47,7 +47,7 @@ int _printf(const char *format, ...)
 		}
 	}
 	va_end(ap);
-	return (count - a_count);
+	return (count + count_2 - a_count);
 }
 
 /**
@@ -74,19 +74,18 @@ int handle_backslash(const char *format, unsigned int start, char c)
 
 /**
  * handle_percent - self descriptive
- * @format: the string
  * @start: where to start working from
  * @ap: a refence to the va_list instance.
  * @c: the reference to the '%' char.
  * Return: 1 always.
  */
-int handle_percent(const char *format, va_list ap, unsigned int start, char c)
+int handle_percent(va_list ap, char c)
 {
 	unsigned int count;
 	int number;
 
-	count = start;
-	c = *(format + ++count);
+	count = 1;
+	number = 0;
 	
 
 	switch (c)
@@ -95,7 +94,7 @@ int handle_percent(const char *format, va_list ap, unsigned int start, char c)
 		_putchar(va_arg(ap, int));
 		break;
 	case 's':
-		printstr(va_arg(ap, char *));
+		count = printstr(va_arg(ap, char *));
 		break;
 	case 'i':
 	case 'd':
@@ -127,6 +126,5 @@ int handle_percent(const char *format, va_list ap, unsigned int start, char c)
 		_putchar(c);
 		break;
 	}
-	c = *(format + ++count);
-	return (1);
+	return (count);
 }
