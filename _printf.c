@@ -124,6 +124,7 @@ int handle_percent(va_list ap, char c)
 	default:
 		_putchar('%');
 		_putchar(c);
+		++count;
 		break;
 	}
 	return (count);
