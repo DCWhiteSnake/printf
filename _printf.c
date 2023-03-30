@@ -11,7 +11,7 @@ int handle_percent(va_list ap, char c);
  */
 int _printf(const char *format, ...)
 {
-	unsigned int count, a_count, count_2;
+	unsigned int count, a_count, count_2, t_count;
 	va_list ap;
 	char c;
 
@@ -20,12 +20,8 @@ int _printf(const char *format, ...)
 	a_count = 0;
 	count = 0;
 	count_2 = 0;
+	t_count = 0;
 
-	if (format == (const char *)0)
-	{
-		printstr("(null)");
-		return (7);
-	}
 	if (!format[0])
 	{
 		return (0);
@@ -39,7 +35,9 @@ int _printf(const char *format, ...)
 		}
 		else if (c == '%')
 		{
-			count_2 += handle_percent(ap, *(format + count + a_count + 1));
+			count_2 = handle_percent(ap, *(format + count + a_count + 1));
+			count_2 = (count_2 == 0)? (unsigned int)printstr("(null)") : count_2; 
+			t_count += count_2;
 			c = *(format + ++count + ++a_count);
 		}
 		else if (c == '\\')
@@ -48,7 +46,7 @@ int _printf(const char *format, ...)
 		}
 	}
 	va_end(ap);
-	return (count + count_2 - a_count);
+	return (count + t_count - a_count);
 }
 
 /**
