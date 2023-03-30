@@ -21,9 +21,10 @@ int _printf(const char *format, ...)
 	count = 0;
 	count_2 = 0;
 
-	if (!format)
+	if (format == (const char *)0)
 	{
-		return (-1);
+		printstr("(null)");
+		return (7);
 	}
 	if (!format[0])
 	{

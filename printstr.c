@@ -9,7 +9,7 @@ int printstr(char *c)
 {
 	int count = 0;
 
-	while (*c != '\0')
+	while (c)
 	{
 		_putchar(*(c++));
 		count++;
