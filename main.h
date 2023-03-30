@@ -9,5 +9,5 @@ int print_X(va_list X);
 int print_u(va_list u);
 int print_o(va_list o);
 int printstr(char *c);
-void writenum(int n);
+int writenum(int n, int start);
 #endif

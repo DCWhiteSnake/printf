@@ -100,10 +100,10 @@ int handle_percent(va_list ap, char c)
 		number = va_arg(ap, int);
 		if (number < 0)
 		{
-			_putchar('-');
+			count += _putchar('-');
 			number *= -1;
 		}
-		writenum(number);
+		count = writenum(number, 1) + 1;
 		break;
 	case 'x':
 		print_x(ap);
