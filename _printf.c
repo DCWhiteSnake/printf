@@ -108,6 +108,14 @@ int handle_percent(const char *format, va_list ap, unsigned int start, char c)
 		writenum(number);
 		c = *(format + ++count);
 	}
+	else if(c == 'x')
+	{
+		print_x(ap);
+	}
+	else if(c == 'X')
+	{
+		print_X(ap);
+	}
 	else if (c == '%')
 	{
 		_putchar(c);
