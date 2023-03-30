@@ -87,18 +87,18 @@ int handle_percent(const char *format, va_list ap, unsigned int start, char c)
 
 	count = start;
 	c = *(format + ++count);
-	if (c == 'c')
+	
+
+	switch (c)
 	{
+	case 'c':
 		_putchar(va_arg(ap, int));
-		c = *(format + ++count);
-	}
-	else if (c == 's')
-	{
+		break;
+	case 's':
 		printstr(va_arg(ap, char *));
-		c = *(format + ++count);
-	}
-	else if (c == 'i' || c == 'd')
-	{
+		break;
+	case 'i':
+	case 'd':
 		number = va_arg(ap, int);
 		if (number < 0)
 		{
@@ -106,26 +106,27 @@ int handle_percent(const char *format, va_list ap, unsigned int start, char c)
 			number *= -1;
 		}
 		writenum(number);
-		c = *(format + ++count);
-	}
-	else if(c == 'x')
-	{
+		break;
+	case 'x':
 		print_x(ap);
-	}
-	else if(c == 'X')
-	{
+		break;
+	case 'X':
 		print_X(ap);
-	}
-	else if (c == '%')
-	{
+		break;
+	case '%':
 		_putchar(c);
-		c = *(format + ++count);
-	}
-	else
-	{
+		break;
+	case 'o':
+		print_o(ap);
+		break;
+	case 'u':
+		print_u(ap);
+		break;
+	default:
 		_putchar('%');
 		_putchar(c);
-		c = *(format + ++count);
+		break;
 	}
+	c = *(format + ++count);
 	return (1);
 }
